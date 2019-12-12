@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './categoryList_screen.dart';
+import '../dummy-data.dart';
 
 class SelectedCategoryPage extends StatelessWidget {
   static String routeName = '/selected_category_page';
@@ -10,13 +12,20 @@ class SelectedCategoryPage extends StatelessWidget {
     final Color color = routeArg['color'];
     final String id = routeArg['id'];
 
+    final categoryMeals = DUMMY_MEALS.where((meal) {
+      return meal.categories.contains(id);
+    }).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
         backgroundColor: color,
       ),
-      body: Center(
-        child: Text('Category selected page'),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return Text(categoryMeals[index].title);
+        },
+        itemCount: categoryMeals.length,
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './categoryList_screen.dart';
-import './SelectedCategoryPage.dart';
+import './screens/categoryList_screen.dart';
+import './screens/SelectedCategoryPage.dart';
 
 void main() => runApp(MyApp());
 

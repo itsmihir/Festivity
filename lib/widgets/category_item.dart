@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './SelectedCategoryPage.dart';
+import '../screens/SelectedCategoryPage.dart';
 
 class CategoryItem extends StatelessWidget {
   final String title;
