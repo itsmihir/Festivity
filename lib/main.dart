@@ -27,8 +27,11 @@ class MyApp extends StatelessWidget {
       routes: {
         CategoryScreen.routeName: (context) => CategoryScreen(),
         SelectedCategoryPage.routeName: (context) => SelectedCategoryPage(),
-        DetailMealPage.routeName:(context)=>DetailMealPage(),
+         DetailMealPage.routeName:(context)=>DetailMealPage(),
       },
+      onGenerateRoute: (setting) => MaterialPageRoute(builder: (ctx)=>CategoryScreen()),  // if some error occurs while navigating to a route 
+
+      onUnknownRoute: (setting)=> MaterialPageRoute(builder: (ctx)=>CategoryScreen()), // if onGenerateRoute is missing or fail to load the page then it is called
     );
   }
 }
