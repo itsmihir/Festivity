@@ -30,6 +30,7 @@ class SelectedCategoryPage extends StatelessWidget {
             url: categoryMeals[index].imageUrl,
             affordability: categoryMeals[index].affordability,
             duration: categoryMeals[index].duration,
+            color:color,
           );
         },
         itemCount: categoryMeals.length,

@@ -9,6 +9,7 @@ class MealItems extends StatelessWidget {
   final Affordability affordability;
   final Complexity complexity;
   final int duration;
+  final Color color;
 
   MealItems(
       {
@@ -18,6 +19,7 @@ class MealItems extends StatelessWidget {
       this.complexity,
       this.duration,
       this.id,
+      this.color
       });
 
   String get complexitytext{
@@ -47,11 +49,13 @@ class MealItems extends StatelessWidget {
   }
 
 
-
   @override
   Widget build(BuildContext context) {
       void gotoDetailPage(){
-    Navigator.of(context).pushNamed(DetailMealPage.routeName ,arguments: id);
+    Navigator.of(context).pushNamed(DetailMealPage.routeName ,arguments: {'id':id , 'color':color})
+    .then((result){
+      print(result);
+    });
 
   }
 

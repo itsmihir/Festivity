@@ -6,9 +6,8 @@ class DetailMealPage extends StatelessWidget {
   static String routeName = '/DetailMealPage';
   @override
   Widget build(BuildContext context) {
-    final String id = ModalRoute.of(context).settings.arguments as String;
-
-    Meal selectedMeal = DUMMY_MEALS.firstWhere((element) => element.id == id);
+    final data = ModalRoute.of(context).settings.arguments as Map;
+    Meal selectedMeal = DUMMY_MEALS.firstWhere((element) => element.id == data['id']);
     Widget buildSelectionTitle(text) {
       return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -21,10 +20,10 @@ class DetailMealPage extends StatelessWidget {
 
     Widget buildcontainer (Widget child) 
     { return Container(
-                  width: 270,
+                  width: 300,
                   height: 200,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -33,13 +32,20 @@ class DetailMealPage extends StatelessWidget {
     }
         return Scaffold(
             appBar: AppBar(
+              backgroundColor: data['color'],
               title: Text(selectedMeal.title),
             ),
             body: SingleChildScrollView(
                           child: Column(
                 children: <Widget>[
-                  Container(
-                    child: Image.network(selectedMeal.imageUrl),
+                  Card(
+                    margin: EdgeInsets.all(10),
+                    elevation: 6,
+                      child: Container(
+                      height: 200,
+                      width:double.infinity,
+                      child: Image.network(selectedMeal.imageUrl,fit: BoxFit.cover,),
+                    ),
                   ),
                   buildSelectionTitle('Ingredient'),
                   buildcontainer(
@@ -47,7 +53,7 @@ class DetailMealPage extends StatelessWidget {
                       itemBuilder: (ctx, index) {
                         return Card(
                           elevation: 1,
-                          color: Colors.grey,
+                          color: data['color'],
                           child: Padding(
                               padding:
                                   EdgeInsets.symmetric(vertical: 10, horizontal: 5),
@@ -64,7 +70,7 @@ class DetailMealPage extends StatelessWidget {
                          children: <Widget>[
                            ListTile(
                              leading: CircleAvatar(
-                               
+                               backgroundColor: data['color'],
                                child:Text('# ${index+1}'),
                              ),
                              title:Text(selectedMeal.steps[index]) ,
@@ -77,9 +83,16 @@ class DetailMealPage extends StatelessWidget {
                      
                      ) 
                     )
-
+           
           ],
-        ),
-            ));
+        ),  
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.of(context).pop(data['id']);
+        },
+        child: Icon(Icons.delete),
+      ),
+            );
   }
 }
