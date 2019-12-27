@@ -3,23 +3,19 @@ import './categoryList_screen.dart';
 import './favorites.dart';
 import '../widgets/drawer.dart';
 import './filter.dart';
-
+import '../models/meal.dart';
 
 class TabScreen extends StatefulWidget {
+   List<Meal> fav;
+
+  TabScreen(this.fav);
   @override
   _TabScreenState createState() => _TabScreenState();
 }
 
 class _TabScreenState extends State<TabScreen> {
 
-final List<Map<String,Object>> _pages = [
-  {'page': CategoryScreen(),
-  'title':'Categories',
-  },
-  {
-  'page':FavScreen(),
-  'title':'Favorities',
-  }];
+   List<Map<String,Object>> _pages;
 int _selectedPageNumber = 0;
   void _selectPage(int index)
   {
@@ -27,8 +23,22 @@ int _selectedPageNumber = 0;
       _selectedPageNumber = index;
     });
   }
+  void initState(){
+   _pages = [
+  {'page': CategoryScreen(),
+  'title':'Categories',
+  },
+  {
+  'page':FavScreen(widget.fav),
+  'title':'Favorities',
+  }];
+  // or copy inside the build method;
+  super.initState();
+  }
   @override
+  
   Widget build(BuildContext context) {
+   
     return  Scaffold(
         appBar: AppBar(
           title: Text(_pages[_selectedPageNumber]['title']),

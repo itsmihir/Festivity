@@ -3,6 +3,9 @@ import '../dummy-data.dart';
 import '../models/meal.dart';
 
 class DetailMealPage extends StatelessWidget {
+  final Function toggleFav;
+  final Function isfav;
+  DetailMealPage(this.toggleFav,this.isfav);
   static String routeName = '/DetailMealPage';
   @override
   Widget build(BuildContext context) {
@@ -89,9 +92,13 @@ class DetailMealPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          Navigator.of(context).pop(data['id']);
+       //   Navigator.of(context).pop(data['id']);
+        toggleFav(data['id']);
         },
-        child: Icon(Icons.delete),
+        child: Icon(
+          isfav(data['id'])?Icons.star:Icons.star_border,
+
+          ),
       ),
             );
   }

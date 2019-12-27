@@ -6,7 +6,8 @@ import '../models/meal.dart';
 
 class SelectedCategoryPage extends StatefulWidget {
   static String routeName = '/selected_category_page';
-
+  final List<Meal> availableMeals;
+  SelectedCategoryPage(this.availableMeals);
   @override
   _SelectedCategoryPageState createState() => _SelectedCategoryPageState();
 }
@@ -35,7 +36,7 @@ class _SelectedCategoryPageState extends State<SelectedCategoryPage> {
       color = routeArg['color'];
       id = routeArg['id'];
 
-     categoryMeals = DUMMY_MEALS.where((meal) {
+     categoryMeals = widget.availableMeals.where((meal) {
       return meal.categories.contains(id);
     }).toList();
     isLoaded=true;
@@ -60,7 +61,6 @@ class _SelectedCategoryPageState extends State<SelectedCategoryPage> {
             affordability: categoryMeals[index].affordability,
             duration: categoryMeals[index].duration,
             color: color,
-            removedItem: _removeItem,
           );
         },
         itemCount: categoryMeals.length,
