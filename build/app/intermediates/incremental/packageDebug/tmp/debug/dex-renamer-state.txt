@@ -1,4 +1,4 @@
-#Thu Dec 19 01:18:28 IST 2019
+#Fri Dec 27 22:59:47 IST 2019
 base.0=/root/Desktop/mealapp/build/app/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex
